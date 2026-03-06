@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fuel Prices</title>
+</head>
+
+<body>
+
+
+
+<h2>Diesel</h2>
+<div>Previous Price: <span id="diesel_previous_price"></span></div>
+<div>Current Price: <span id="diesel_current_price"></span></div>
+<div>Change: <span id="diesel_price_change"></span></div>
+<div>% Change: <span id="diesel_price_change_perc"></span></div>
+
+<h2>Gasoil</h2>
+<div>Previous Price: <span id="gasoil_previous_price"></span></div>
+<div>Current Price: <span id="gasoil_current_price"></span></div>
+<div>Change: <span id="gasoil_price_change"></span></div>
+<div>% Change: <span id="gasoil_price_change_perc"></span></div>
+
+<h2>Kerosene</h2>
+<div>Previous Price: <span id="kero_previous_price"></span></div>
+<div>Current Price: <span id="kero_current_price"></span></div>
+<div>Change: <span id="kero_price_change"></span></div>
+<div>% Change: <span id="kero_price_change_perc"></span></div>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+
+
+
+
+	const SUPABASE_URL = "https://ifkitqsjbusgomvuorbq.supabase.co";
+	const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlma2l0cXNqYnVzZ29tdnVvcmJxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3ODYyNDgsImV4cCI6MjA4ODM2MjI0OH0.F2A_ujJ4IVveQN9Jifw8LoOhG_AlGdahd2KCmliXssc";
+
+	//const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+	const supabase = createClient(
+		SUPABASE_URL,
+		SUPABASE_KEY
+	)
+
+	async function loadPrices() {
+
+		const { data, error } = await supabase
+			.from("PriceHistory")
+			.select("*")
+			.order("id", { ascending: false })
+			.limit(1);
+
+		if (error) {
+			console.error("Error loading data:", error);
+			return;
+		}
+
+		const row = data[0];
+
+		document.getElementById("diesel_previous_price").textContent = row.diesel_previous_price;
+		document.getElementById("diesel_current_price").textContent = row.diesel_current_price;
+		document.getElementById("diesel_price_change").textContent = row.diesel_price_change;
+		document.getElementById("diesel_price_change_perc").textContent = row.diesel_price_change_perc;
+
+		document.getElementById("gasoil_previous_price").textContent = row.gasoil_previous_price;
+		document.getElementById("gasoil_current_price").textContent = row.gasoil_current_price;
+		document.getElementById("gasoil_price_change").textContent = row.gasoil_price_change;
+		document.getElementById("gasoil_price_change_perc").textContent = row.gasoil_price_change_perc;
+
+		document.getElementById("kero_previous_price").textContent = row.kero_previous_price;
+		document.getElementById("kero_current_price").textContent = row.kero_current_price;
+		document.getElementById("kero_price_change").textContent = row.kero_price_change;
+		document.getElementById("kero_price_change_perc").textContent = row.kero_price_change_perc;
+	}
+
+	loadPrices();
+</script>
