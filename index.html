@@ -1,43 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fuel Prices</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Fuel Prices</title>
+
+	<style>
+
+	body {
+		background-color: #092e6b;
+		color: white;
+		text-align: center;
+		font-family: Helvetica
+	}
+
+	tr, th, td {
+		border: 1px solid white;
+		text-align: center;
+		width: 25%;
+		border-radius:10px;
+	}
+
+	table {
+		width: 100%;
+		text-align: center;
+		vertical-align: middle;
+		padding: 5px;
+		border-spacing: 30px 0px;
+	}
+
+
+	</style>
+
 </head>
 
 <body>
 
+<table>
+		<tr>
+			<td><h1>Diesel</h1></td>
+			<td>
+				<h5>PREVIOUS DAY'S CLOSE</h5><p>
+				<h1><span id="diesel_previous_price"></span></h1><p>
+				<h5><span id="diesel_previous_date"></span></h5>
+			</td>
+			<td>
+				<h5>PRICE CHANGE</h5><p>
+				<h1><span id="diesel_price_change"></span></h1><p>
+				<h5><span id="diesel_price_change_perc"></span></h5>
+			</td>
+			<td>
+				<h5>CURRENT DIESEL PRICE</h5><p>
+				<h1><span id="diesel_current_price"></span><h1><p>
+				<h5><span id="diesel_current_date"></span></h5><p>
+				<h5><span id="diesel_current_time"></span></h5>
+			</td>
+		</tr>
+</table>
+
+<table>
+		<tr>
+			<td><h1>Gas Oil</h1></td>
+			<td>
+				<h5>PREVIOUS DAY'S CLOSE</h5><p>
+				<h1><span id="gasoil_previous_price"></span><p>
+				<h5><span id="gasoil_previous_date"></span>
+			</td>
+			<td>
+				<h5>PRICE CHANGE</h5><p>
+				<h1><span id="gasoil_price_change"></span></h1><p>
+				<h5><span id="gasoil_price_change_perc"></span></h5>
+			</td>
+			<td>
+				<h5>CURRENT GAS OIL PRICE</h5><p>
+				<h1><span id="gasoil_current_price"></span><h1><p>
+				<h5><span id="gasoil_current_date"></span></h5><p>
+				<h5><span id="gasoil_current_time"></span></h5>
+			</td>
+		</tr>
+</table>
+
+<table>
+		<tr>
+			<td><h1>Kero</h1></td>
+			<td>
+				<h5>PREVIOUS DAY'S CLOSE</h5><p>
+				<h1><span id="kero_previous_price"></span></h1><p>
+				<h5><span id="kero_previous_date"></span></h5>
+			</td>
+			<td>
+				<h5>PRICE CHANGE</h5><p>
+				<h1><span id="kero_price_change"></span><h1><p>
+				<h5><span id="kero_price_change_perc"></span></h5>
+			</td>
+			<td>
+				<h5>CURRENT KERO PRICE</h5><p>
+				<h1><span id="kero_current_price"></span><h1><p>
+				<h5><span id="kero_current_date"></span></h5><p>
+				<h5><span id="kero_current_time"></span></h5>
+			</td>
+		</tr>
+</table>
 
 
-<h2>Diesel</h2>
-<div>Previous Price: <span id="diesel_previous_price"></span></div>
-<div>Current Price: <span id="diesel_current_price"></span></div>
-<div>Change: <span id="diesel_price_change"></span></div>
-<div>% Change: <span id="diesel_price_change_perc"></span></div>
-
-<h2>Gasoil</h2>
-<div>Previous Price: <span id="gasoil_previous_price"></span></div>
-<div>Current Price: <span id="gasoil_current_price"></span></div>
-<div>Change: <span id="gasoil_price_change"></span></div>
-<div>% Change: <span id="gasoil_price_change_perc"></span></div>
-
-<h2>Kerosene</h2>
-<div>Previous Price: <span id="kero_previous_price"></span></div>
-<div>Current Price: <span id="kero_current_price"></span></div>
-<div>Change: <span id="kero_price_change"></span></div>
-<div>% Change: <span id="kero_price_change_perc"></span></div>
 
 <script type="module">
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
-
-
-
+	import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 	const SUPABASE_URL = "https://ifkitqsjbusgomvuorbq.supabase.co";
 	const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlma2l0cXNqYnVzZ29tdnVvcmJxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3ODYyNDgsImV4cCI6MjA4ODM2MjI0OH0.F2A_ujJ4IVveQN9Jifw8LoOhG_AlGdahd2KCmliXssc";
 
-	//const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 	const supabase = createClient(
 		SUPABASE_URL,
 		SUPABASE_KEY
@@ -59,20 +131,35 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 		const row = data[0];
 
 		document.getElementById("diesel_previous_price").textContent = row.diesel_previous_price;
-		document.getElementById("diesel_current_price").textContent = row.diesel_current_price;
+		document.getElementById("diesel_previous_date").textContent = row.diesel_previous_date;
 		document.getElementById("diesel_price_change").textContent = row.diesel_price_change;
 		document.getElementById("diesel_price_change_perc").textContent = row.diesel_price_change_perc;
+		document.getElementById("diesel_current_price").textContent = row.diesel_current_price;
+		document.getElementById("diesel_current_date").textContent = row.diesel_current_date;
+		document.getElementById("diesel_current_time").textContent = row.diesel_current_time;
+
 
 		document.getElementById("gasoil_previous_price").textContent = row.gasoil_previous_price;
-		document.getElementById("gasoil_current_price").textContent = row.gasoil_current_price;
+		document.getElementById("gasoil_previous_date").textContent = row.gasoil_previous_date;
 		document.getElementById("gasoil_price_change").textContent = row.gasoil_price_change;
 		document.getElementById("gasoil_price_change_perc").textContent = row.gasoil_price_change_perc;
+		document.getElementById("gasoil_current_price").textContent = row.gasoil_current_price;
+		document.getElementById("gasoil_current_date").textContent = row.gasoil_current_date;
+		document.getElementById("gasoil_current_time").textContent = row.gasoil_current_time;
 
 		document.getElementById("kero_previous_price").textContent = row.kero_previous_price;
-		document.getElementById("kero_current_price").textContent = row.kero_current_price;
+		document.getElementById("kero_previous_date").textContent = row.kero_previous_date;
 		document.getElementById("kero_price_change").textContent = row.kero_price_change;
 		document.getElementById("kero_price_change_perc").textContent = row.kero_price_change_perc;
+		document.getElementById("kero_current_price").textContent = row.kero_current_price;
+		document.getElementById("kero_current_date").textContent = row.kero_current_date;
+		document.getElementById("kero_current_time").textContent = row.kero_current_time;
+
+		document.getElementById("last_updated").textContent =
+		"Last updated: " + new Date().toLocaleString();
 	}
 
 	loadPrices();
+
+	setInterval(loadPrices, 30000);
 </script>
