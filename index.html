@@ -19,6 +19,7 @@
 		text-align: center;
 		width: 25%;
 		border-radius:10px;
+		background-image: linear-gradient(to bottom, #051836, #052963);
 	}
 
 	table {
@@ -27,6 +28,16 @@
 		vertical-align: middle;
 		padding: 5px;
 		border-spacing: 30px 0px;
+	}
+
+	.price-up {
+		color: green;
+		font-weight: bold;
+	}
+
+	.price-down {
+		color: red;
+		font-weight: bold;
 	}
 
 	@media (max-width: 820px){
@@ -67,19 +78,21 @@
 		<tr>
 			<td><h1>Diesel</h1></td>
 			<td>
-				<h5>PREVIOUS DAY'S CLOSE</h5><p>
-				<h1><span id="diesel_previous_price"></span></h1><p>
+				<h5>PREVIOUS DAY'S CLOSE</h5>
+				<h1><span id="diesel_previous_price"></span></h1>
 				<h5><span id="diesel_previous_date"></span></h5>
+				<h5>&nbsp</h5>
 			</td>
 			<td>
-				<h5>PRICE CHANGE</h5><p>
-				<h1><span id="diesel_price_change"></span></h1><p>
+				<h5>PRICE CHANGE</h5>
+				<h1><span id="diesel_price_change"></span></h1>
 				<h5><span id="diesel_price_change_perc"></span></h5>
+				<h5>&nbsp</h5>
 			</td>
 			<td>
-				<h5>CURRENT DIESEL PRICE</h5><p>
-				<h1><span id="diesel_current_price"></span><h1><p>
-				<h5><span id="diesel_current_date"></span></h5><p>
+				<h5>CURRENT DIESEL PRICE</h5>
+				<h1><span id="diesel_current_price"></span><h1>
+				<h5><span id="diesel_current_date"></span></h5>
 				<h5><span id="diesel_current_time"></span></h5>
 			</td>
 		</tr>
@@ -89,19 +102,21 @@
 		<tr>
 			<td><h1>Gas Oil</h1></td>
 			<td>
-				<h5>PREVIOUS DAY'S CLOSE</h5><p>
-				<h1><span id="gasoil_previous_price"></span><p>
+				<h5>PREVIOUS DAY'S CLOSE</h5>
+				<h1><span id="gasoil_previous_price"></span>
 				<h5><span id="gasoil_previous_date"></span>
+				<h5>&nbsp</h5>
 			</td>
 			<td>
-				<h5>PRICE CHANGE</h5><p>
-				<h1><span id="gasoil_price_change"></span></h1><p>
+				<h5>PRICE CHANGE</h5>
+				<h1><span id="gasoil_price_change"></span></h1>
 				<h5><span id="gasoil_price_change_perc"></span></h5>
+				<h5>&nbsp</h5>
 			</td>
 			<td>
-				<h5>CURRENT GAS OIL PRICE</h5><p>
-				<h1><span id="gasoil_current_price"></span><h1><p>
-				<h5><span id="gasoil_current_date"></span></h5><p>
+				<h5>CURRENT GAS OIL PRICE</h5>
+				<h1><span id="gasoil_current_price"></span><h1>
+				<h5><span id="gasoil_current_date"></span></h5>
 				<h5><span id="gasoil_current_time"></span></h5>
 			</td>
 		</tr>
@@ -111,19 +126,21 @@
 		<tr>
 			<td><h1>Kero</h1></td>
 			<td>
-				<h5>PREVIOUS DAY'S CLOSE</h5><p>
-				<h1><span id="kero_previous_price"></span></h1><p>
+				<h5>PREVIOUS DAY'S CLOSE</h5>
+				<h1><span id="kero_previous_price"></span></h1>
 				<h5><span id="kero_previous_date"></span></h5>
+				<h5>&nbsp</h5>
 			</td>
 			<td>
-				<h5>PRICE CHANGE</h5><p>
-				<h1><span id="kero_price_change"></span><h1><p>
+				<h5>PRICE CHANGE</h5>
+				<h1><span id="kero_price_change"></span><h1>
 				<h5><span id="kero_price_change_perc"></span></h5>
+				<h5>&nbsp</h5>
 			</td>
 			<td>
-				<h5>CURRENT KERO PRICE</h5><p>
-				<h1><span id="kero_current_price"></span><h1><p>
-				<h5><span id="kero_current_date"></span></h5><p>
+				<h5>CURRENT KERO PRICE</h5>
+				<h1><span id="kero_current_price"></span><h1>
+				<h5><span id="kero_current_date"></span></h5>
 				<h5><span id="kero_current_time"></span></h5>
 			</td>
 		</tr>
@@ -159,7 +176,7 @@
 
 		document.getElementById("diesel_previous_price").textContent = row.diesel_previous_price;
 		document.getElementById("diesel_previous_date").textContent = row.diesel_previous_date;
-		document.getElementById("diesel_price_change").textContent = row.diesel_price_change;
+		//document.getElementById("diesel_price_change").textContent = row.diesel_price_change;
 		document.getElementById("diesel_price_change_perc").textContent = row.diesel_price_change_perc;
 		document.getElementById("diesel_current_price").textContent = row.diesel_current_price;
 		document.getElementById("diesel_current_date").textContent = row.diesel_current_date;
@@ -168,7 +185,7 @@
 
 		document.getElementById("gasoil_previous_price").textContent = row.gasoil_previous_price;
 		document.getElementById("gasoil_previous_date").textContent = row.gasoil_previous_date;
-		document.getElementById("gasoil_price_change").textContent = row.gasoil_price_change;
+		//document.getElementById("gasoil_price_change").textContent = row.gasoil_price_change;
 		document.getElementById("gasoil_price_change_perc").textContent = row.gasoil_price_change_perc;
 		document.getElementById("gasoil_current_price").textContent = row.gasoil_current_price;
 		document.getElementById("gasoil_current_date").textContent = row.gasoil_current_date;
@@ -176,11 +193,38 @@
 
 		document.getElementById("kero_previous_price").textContent = row.kero_previous_price;
 		document.getElementById("kero_previous_date").textContent = row.kero_previous_date;
-		document.getElementById("kero_price_change").textContent = row.kero_price_change;
+		//document.getElementById("kero_price_change").textContent = row.kero_price_change;
 		document.getElementById("kero_price_change_perc").textContent = row.kero_price_change_perc;
 		document.getElementById("kero_current_price").textContent = row.kero_current_price;
 		document.getElementById("kero_current_date").textContent = row.kero_current_date;
 		document.getElementById("kero_current_time").textContent = row.kero_current_time;
+
+		const dieselChange = row.diesel_price_change;
+		const diesel = document.getElementById("diesel_price_change");
+		diesel.textContent = dieselChange;
+		if (dieselChange.startsWith("+")) {
+			diesel.classList.add("price-up");
+		} else if (dieselChange.startsWith("-")) {
+			diesel.classList.add("price-down");
+		}
+
+		const gasoilChange = row.gasoil_price_change;
+		const gasoil = document.getElementById("gasoil_price_change");
+		gasoil.textContent = gasoilChange;
+		if (gasoilChange.startsWith("+")) {
+			gasoil.classList.add("price-up");
+		} else if (gasoilChange.startsWith("-")) {
+			gasoil.classList.add("price-down");
+		}
+
+		const keroChange = row.kero_price_change;
+		const kero = document.getElementById("kero_price_change");
+		kero.textContent = keroChange;
+		if (keroChange.startsWith("+")) {
+			kero.classList.add("price-up");
+		} else if (keroChange.startsWith("-")) {
+			kero.classList.add("price-down");
+		}
 
 		document.getElementById("last_updated").textContent =
 		"Last updated: " + new Date().toLocaleString();
